@@ -12,7 +12,7 @@ label: contradiction
 
 ### 평가방법
 - **Accuracy**
-- Public: Test Data 중 Random sampling한 60%
+- Public: Test Data 중 Random sampling 60%
 - Private: 전체 Test Data
 
 ### Dataset
