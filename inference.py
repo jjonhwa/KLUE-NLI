@@ -117,7 +117,8 @@ if __name__ == "__main__":
     parser.add_argument('--batch_size', type=int, default=24, help="batch size (default: 24)")
     
     # -- save predict
-    parser.add_argument('--save_path', type=str, default='./submission/', help="save path for submission")
+    parser.add_argument('--save_path', type=str, default='./result/', help="save path for output_prob")
+    parser.add_argument('--submission_path', type=str, default='./submission/', help="save path for submission")
     
     args = parser.parse_args()
     seed_everything(42)
@@ -139,7 +140,13 @@ if __name__ == "__main__":
     answer = num_to_label(pred_answer)
 
     dataframe = pd.DataFrame(answer, columns=['index', 'label'])
+    dataframe['probability'] = output_prob
+    submission = dataframe[['index', 'label']]
+
     if not os.path.isdir(args.save_path):
-        os.mkdir(args.save_path)
-    dataframe.to_csv(os.path.join(args.save_path, "submission.csv"), index=False)  
-        
+        os.mkdir(os.path.join('./', args.save_path))
+    if not os.path.isdir(args.submission_path):
+        os.mkdir(os.path.join('./', args.submission_path))
+    
+    submission.to_csv(os.path.join(args.submission_path, "submission.csv"), index=False)  
+    dataframe.to_csv(os.path.join(args.save_path, "prob.csv"), index=False)
