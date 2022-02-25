@@ -73,10 +73,10 @@ python inference.py --explain
   -  **SIC layer추가 (backbone model에서의 output layer들 사이의 조합 생성) => span 정보 전달**
   -  **Interpreatation layer를 추가 => span에서의 가중치 추출**
   -  **추출된 가중치와 span 정보를 weighted sum하여 최종 output 출력**
--  **외부 Dataset 정제 및 활용**
+-  **외부 Dataset 정제 및 활용**  
   - KLUE OFFICIAL Dev Dataset 활용
   - KakaoBrain KorNLI Dataset 중 Human Trnaslated Data만 활용 (Original Dataset과 유사한 Data 추가)
--  **Out of Fold Ensemble**
+-  **Out of Fold Ensemble**  
   - Stratified KFold를 Ensemble 진행
   - Baseline + Explaining Model Ensemble
 
