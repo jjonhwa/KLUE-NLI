@@ -69,10 +69,10 @@ python inference.py --explain
   - KLUE/RoBERTa-large를 backbone으로 활용한 NLI 모델 적용
   - 다양한 HyperParameter Tuning 실험을 통한 성능 향상
 - **Self-Explaining Structures Improve NLP Models** [(Paper Review 참고)](https://jjonhwa.github.io/booststudy/2022/02/21/booststudy-paper-Self_Explaining_Structures_Improve_NLP_Models/)
-  -  **KLUE/RoBERTa-large를 backbone**으로 활용 (intermediate layer)
-  -  **SIC layer추가 (backbone model에서의 output layer들 사이의 조합 생성) => span 정보 전달**
-  -  **Interpreatation layer를 추가 => span에서의 가중치 추출**
-  -  **추출된 가중치와 span 정보를 weighted sum하여 최종 output 출력**
+  -  KLUE/RoBERTa-large를 backbone으로 활용 (intermediate layer)
+  -  SIC layer추가 (backbone model에서의 output layer들 사이의 조합 생성) => span 정보 전달
+  -  Interpreatation layer를 추가 => span에서의 가중치 추출
+  -  추출된 가중치와 span 정보를 weighted sum하여 최종 output 출력
 -  **외부 Dataset 정제 및 활용**  
     - KLUE OFFICIAL Dev Dataset 활용
     - KakaoBrain KorNLI Dataset 중 Human Trnaslated Data만 활용 (Original Dataset과 유사한 Data 추가)
