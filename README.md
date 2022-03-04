@@ -85,9 +85,9 @@ python inference.py --explain
 |---|---|---|
 |Accuracy|0.872|0.864|
 
-||Baseline KFold|Self-Explaining KFold|Baseline + Self-Explaining|
-|---|---|---|---|
-|Accuracy|0.888|||
+||Baseline KFold|Self-Explaining KFold|Baseline + Self-Explaining(Public)|Baseline + Self-Explaining(Private)|
+|---|---|---|---|---|
+|Accuracy|0.888|0.874|0.89|0.89015|
 
 ## 과제
 - Self-Explaining에 대한 Error Analysis
