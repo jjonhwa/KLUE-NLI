@@ -27,6 +27,7 @@ def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, 
         assert max_lengths.max() <= max_len
         max_lengths = np.ones_like(max_lengths) * max_len
 
+    # Adjust to the longest length within batch_size.
     output = [torch.full([batch_size, max_lengths[field_idx]],
                          fill_value=fill_values[field_idx],
                          dtype=batch[0][field_idx].dtype)
