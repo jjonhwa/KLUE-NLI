@@ -15,10 +15,12 @@ def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, 
     Returns:
         output: list of field batched data, which shape is [batch, max_length]
     """
+    
     # [batch, num_fields]
     lengths = np.array([[len(field_data) for field_data in sample] for sample in batch])
     batch_size, num_fields = lengths.shape
     fill_values = fill_values or [0.0] * num_fields
+    
     # [num_fields]
     max_lengths = lengths.max(axis=0)
     if max_len:
@@ -29,22 +31,22 @@ def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, 
                          fill_value=fill_values[field_idx],
                          dtype=batch[0][field_idx].dtype)
               for field_idx in range(num_fields)]
+    
     for sample_idx in range(batch_size):
         for field_idx in range(num_fields):
             # seq_length
             data = batch[sample_idx][field_idx]
             output[field_idx][sample_idx][: data.shape[0]] = data
+            
     # generate span_index and span_mask
     max_sentence_length = max_lengths[0]
     start_indexs = []
     end_indexs = []
     for i in range(1, max_sentence_length - 1):
         for j in range(i, max_sentence_length - 1):
-            # # span大小为10
-            # if j - i > 10:
-            #     continue
             start_indexs.append(i)
             end_indexs.append(j)
+            
     # generate span mask
     span_masks = []
     for input_ids, label, length in batch:
@@ -57,6 +59,7 @@ def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, 
             else:
                 span_mask.append(1e6)
         span_masks.append(span_mask)
+        
     # add to output
     output.append(torch.LongTensor(start_indexs))
     output.append(torch.LongTensor(end_indexs))
