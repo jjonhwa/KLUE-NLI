@@ -49,6 +49,7 @@ def collate_to_max_length(batch: List[List[torch.Tensor]], max_len: int = None, 
             end_indexs.append(j)
             
     # generate span mask
+    # Calculate span's influence only if both start_index and end_index belong to "primise" or "hypothesis".
     span_masks = []
     for input_ids, label, length in batch:
         span_mask = []
